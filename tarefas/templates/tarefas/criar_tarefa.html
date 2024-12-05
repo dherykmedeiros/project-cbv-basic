@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<h1 class="ml-10 mt-10 text-white text-xl">{% if object %}Editar{% else %}Criar{% endif %} Tarefa</h1>
+<form class="ml-10 mt-10 space-y-6" method="POST">
+    {% csrf_token %}
+    <div class="flex flex-col w-1/2">
+        <label class="text-white" for="titulo">Titulo:</label>
+        {{ form.titulo }}
+    </div>
+    <div  class="flex flex-col w-1/2">
+        <label class="text-white" for="descricao">Descrição:</label>
+        {{ form.descricao }}
+    </div>
+    <div class="flex w-1/2">
+        <label class="mr-3 text-white" for="concluido">Concluido:</label>
+        {{ form.concluida }}
+    </div>
+    <button class="ml-1 mt-10 border border-red-200 bg-blue-600 rounded-md text-white" type="submit">Salvar</button>
+    <a class="text-blue-400" href="{% url 'lista_tarefas' %}">Voltar</a>
+</form>
+{% endblock %}

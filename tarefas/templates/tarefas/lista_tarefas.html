@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<h1 class="ml-10 mt-10 font-bold text-white text-xl">Lista de Tarefas</h1>
+<table class="w-1/2 bg-white border border-black mx-10 my-10 rounded-lg">
+    <tr class="">
+        <th class="w-1/2 px-6 py-3 text-center text-sm font-mediun border border-black bg-slate-500">Tarefa</th>
+        <th class="w-1/2 px-6 py-3 text-center text-sm font-mediun border border-black bg-slate-500">Concluida</th>
+        <th class="w-1/8  px-6 py-3 text-center text-sm font-mediun border border-black bg-slate-500">Detalhes</th>
+    </tr>
+    {% for tarefa in tarefas %}
+        <tr>
+            <td class="px-6 py-4 text-left text-sm border border-black">{{ tarefa.titulo }}</td>
+            <td class="px-6 py-4 text-left text-sm border border-black">{{ tarefa.concluida|yesno:"Concluída,Não concluída" }}</td>
+            <td class="px-6 py-4 text-center text-sm border border-black">
+                <a class="text-white border border-blue-200 px-4 py-2 bg-blue-400 rounded-md hover:underline hover:bg-green-400" href="{% url 'detalhe_tarefa' tarefa.id %}">mais</a>
+            </td>
+        </tr>
+        
+    {% endfor %}
+    </table>
+<a class="ml-10 text-white border border-red-200 px-4 py-3 bg-green-600 rounded-md hover:text-red-600" href="{% url 'criar_tarefa' %}" class='no-underline hover:underline'>Criar Nova Tarefa</a>
+{% endblock %}
